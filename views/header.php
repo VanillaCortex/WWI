@@ -1,0 +1,16 @@
+<?php
+// Inlog if statement hier voor andere weergave
+
+?>
+<div class="col-md-10 offset-md-1">
+    <nav class="navbar">
+        <a class="navbar-brand" href="/index.php">
+            <img src="media/images/logo.png" width="177" height="64">
+        </a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <h4>World Wide Importers</h4>
+            </li>
+        </ul>
+    </nav>
+</div>
