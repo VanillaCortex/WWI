@@ -2,25 +2,8 @@
 
 require_once 'conf/config.php';
 
-//$sql = "SELECT * FROM people;";
-//$result = $mysqli->query($sql)->fetch_all();
-
-//foreach($result as $key => $item) {
-//    print_r($item);
-//}
-
-//print_r($result['FullName']);
-
+// Get the URL to use in other places
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
-
-//$url = parse_url($request_uri[0]);
-//print_r($url);
-//if(strpos($request_uri[0], '/category/')) {
-//    $url = parse_url($request_uri[0]);
-//    $array = [];
-//    $parsed_url = parse_str($url['path'], $array);
-//    print_r($array);
-//}
 
 ?>
 <!DOCTYPE html>
@@ -31,9 +14,6 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
-    <script>
-            
-    </script>
         <?php
         // Header
         require_once 'views/header.php';
@@ -41,17 +21,15 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
         <div class="col-md-10 offset-md-1">
             <?php
+            // Load a page based on the url
             switch ($request_uri[0]) {
                 // Home page
                 case '/WWI/':
                     require 'views/homepage.php';
                     break;
-                case '/WWI/category/':
-                    require 'views/category.php';
-                    break;
                 // Default (404)
                 default:
-//                    header('HTTP/1.0 404 Not found');
+                    header('HTTP/1.0 404 Not found');
             }
             ?>
         </div>

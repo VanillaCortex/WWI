@@ -10,19 +10,18 @@ $categories = $pdo->prepare($query);
 $categories->execute();
 
 ?>
-<div class="row">
+<div class="row custom-container">
 <?php
 while($category = $categories->fetch()) {
     $image = $category['image'];
     echo base64_encode($category['image']);
     ?>
-    <div class="col-sm-3">
-        <div class="category-box">
-            <form method="get" action="views/category.php">
-            <input type="hidden" value="<?=$category['StockGroupID']?>">
-            <?= $category['StockGroupName'] ?>
-            <img src="media/images/logo.png" width="100%">
-            </form>
+    <div class="col-sm-4">
+        <div class="nice-box clickable">
+            <a href="views/category.php?category=<?=$category['StockGroupID']?>">
+                <?= $category['StockGroupName'] ?>
+                <img src="media/images/logo.png" width="100%">
+            </a>
         </div>
     </div>
     <?php
