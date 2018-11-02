@@ -16,7 +16,7 @@ while($category = $categories->fetch()) {
     $image = $category['image'];
     echo base64_encode($category['image']);
     ?>
-    <div class="col-sm-4">
+    <div class="col-md-4 col-sm-12">
         <div class="nice-box clickable">
             <a href="views/category.php?category=<?=$category['StockGroupID']?>">
                 <?= $category['StockGroupName'] ?>

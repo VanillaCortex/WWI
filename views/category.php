@@ -2,6 +2,7 @@
 require_once '../conf/config.php';
 // Check if the get was succesfull and if the desired value is present
 if(!isset($_GET) && !isset($_GET['category'])) {
+    print('Oops! Something went wrong. Try and return to the previous page');
     die;
 }
 // Get the category from the GET
@@ -122,7 +123,6 @@ $this_category = $this_category->fetch();
                             <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=100"><button type="button" class="btn btn-secondary">100</button></a>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -131,11 +131,14 @@ $this_category = $this_category->fetch();
             while($product = $products->fetch()) {
                 $x++;
                 ?>
-                <div class="col-sm-3 <?php if($x > $pagination) { echo 'hidden';   } ?>" id="<?=$x?>">
+                <div class="col-md-4 col-sm-12 <?php if($x > $pagination) { echo 'hidden';   } ?>" id="<?=$x?>">
                     <div class="nice-box clickable">
-                        <p><b><?= $product['StockItemName'] ?></b></p>
-                        <?=$product['Photo']?>
-                        <img src="../media/images/logo.png" width="100%">
+                        <a href="product.php?product=<?=$product['StockItemID']?>">
+                            <?= $product['StockItemName'] ?>
+                            <?=$product['Photo']?>
+                            <img src="../media/images/logo.png" width="100%">
+                            <p><b>Prijs:</b> <?=$product['RecommendedRetailPrice']?></p>
+                        </a>
                     </div>
                 </div>
                 <?php
