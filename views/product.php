@@ -64,6 +64,8 @@ $product = $product->fetch();
                     <?php
                     if(!empty($product['MarketingComments'])) {
                         print($product['MarketingComments']);
+                    } else {
+                        print('geen beschrijving');
                     }
                     ?>
                 </div>
