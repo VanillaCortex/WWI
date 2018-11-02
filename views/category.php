@@ -15,20 +15,60 @@ if(isset($_GET['pagination'])) {
     $pagination = 25;
 }
 
+if(isset($_GET['order'])) {
+    // Order type
+    $order = $_GET['order'];
+} else {
+    $order = 0;
+}
+
 // Get the url to do stuff with
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
-// Get the products of our Category
-$query = "
-SELECT s.* 
-FROM stockitems s 
-WHERE s.StockItemID 
-IN(
-SELECT b.StockItemId 
-FROM stockitemstockgroups b 
-WHERE b.StockGroupID = ?) ";
-$products = $pdo->prepare($query);
-$products->execute(array($category));
+// Check in what order we have to get the products
+switch ($order) {
+    case 1:
+        // Get the products of our Category but ascending
+        $query = "
+        SELECT s.* 
+        FROM stockitems s 
+        WHERE s.StockItemID 
+        IN(
+        SELECT b.StockItemId 
+        FROM stockitemstockgroups b 
+        WHERE b.StockGroupID = ?)
+        ORDER BY s.RecommendedRetailPrice ASC ";
+        $products = $pdo->prepare($query);
+        $products->execute(array($category));
+        break;
+    case 2:
+        // Get the products of our Category
+        $query = "
+        SELECT s.* 
+        FROM stockitems s 
+        WHERE s.StockItemID 
+        IN(
+        SELECT b.StockItemId 
+        FROM stockitemstockgroups b 
+        WHERE b.StockGroupID = ?)
+        ORDER BY s.RecommendedRetailPrice DESC";
+        $products = $pdo->prepare($query);
+        $products->execute(array($category));
+        break;
+    default:
+        // Get the products of our Category
+        $query = "
+        SELECT s.* 
+        FROM stockitems s 
+        WHERE s.StockItemID 
+        IN(
+        SELECT b.StockItemId 
+        FROM stockitemstockgroups b 
+        WHERE b.StockGroupID = ?) ";
+        $products = $pdo->prepare($query);
+        $products->execute(array($category));
+        break;
+}
 
 // Count the amount of products
 $count = $products->rowCount();
@@ -116,13 +156,38 @@ $this_category = $this_category->fetch();
             <div class="col-sm-12">
                 <div class="nice-box">
                     <h3><?= $this_category['StockGroupName'] ?></h3>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=25"><button type="button" class="btn btn-secondary">25</button></a>
-                            <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=50"><button type="button" class="btn btn-secondary">50</button></a>
-                            <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=100"><button type="button" class="btn btn-secondary">100</button></a>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="col-sm-12">
+                                    <p><b>Aantal producten per pagina</b></p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="btn-group mr-2 float-left" role="group" aria-label="First group">
+                                        <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=25"><button type="button" class="btn btn-secondary">25</button></a>
+                                        <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=50"><button type="button" class="btn btn-secondary">50</button></a>
+                                        <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=100"><button type="button" class="btn btn-secondary">100</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="col-sm-12">
+                                    <p class="text-right"><b>Prijs ordening</b></p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="btn-group mr-2 float-right" role="group" aria-label="First group">
+                                        <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=<?=$pagination?>&order=0"><button type="button" class="btn btn-secondary">X</button></a>
+                                        <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=<?=$pagination?>&order=1"><button type="button" class="btn btn-secondary">></button></a>
+                                        <a href="category.php?category=<?=$this_category['StockGroupID']?>&pagination=<?=$pagination?>&order=2"><button type="button" class="btn btn-secondary"><</button></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -137,7 +202,7 @@ $this_category = $this_category->fetch();
                             <?= $product['StockItemName'] ?>
                             <?=$product['Photo']?>
                             <img src="../media/images/logo.png" width="100%">
-                            <p><b>Prijs:</b> <?=$product['RecommendedRetailPrice']?></p>
+                            <p><b>Prijs:</b> €<?=$product['RecommendedRetailPrice']?></p>
                         </a>
                     </div>
                 </div>

@@ -4,7 +4,7 @@
 ?>
 <div class="col-md-10 offset-md-1">
     <nav class="navbar">
-        <a class="navbar-brand" href="localhost/WWI/index.php">
+        <a class="navbar-brand" href="<?php if($request_uri[0]!=='/WWI/'){ print('../'); }?>">
             <img src="<?php if($request_uri[0]!=='/WWI/'){ print('../'); }?>media/images/logo.png" width="177" height="64">
         </a>
         <ul class="navbar-nav mr-auto">
