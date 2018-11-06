@@ -201,7 +201,7 @@ $this_category = $this_category->fetch();
                         <a href="product.php?product=<?=$product['StockItemID']?>">
                             <?= $product['StockItemName'] ?>
                             <?=$product['Photo']?>
-                            <img src="../media/images/logo.png" width="100%">
+                            <img src="../media/images/no_image.jpg" width="50%">
                             <p><b>Prijs:</b> €<?=$product['RecommendedRetailPrice']?></p>
                         </a>
                     </div>
