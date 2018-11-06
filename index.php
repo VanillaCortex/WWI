@@ -3,7 +3,14 @@
 require_once 'conf/config.php';
 
 // Get the URL to use in other places
-$request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
+$whole_url = parse_url($_SERVER['REQUEST_URI']);
+$url = $whole_url['path'];
+$url_parts = explode('/', $url);
+if(isset($whole_url['query'])) {
+    $arguments = explode('/', $whole_url['query']);
+}
+
+$request = $_SERVER['REQUEST_URI'];
 
 ?>
 <!DOCTYPE html>
@@ -21,15 +28,21 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
         <div class="col-md-10 offset-md-1">
             <?php
-            // Load a page based on the url
-            switch ($request_uri[0]) {
-                // Home page
-                case '/WWI/':
-                    require 'views/homepage.php';
+
+            switch($url) {
+                case $default_url:
+                    require __DIR__ . '/views/homepage.php';
                     break;
-                // Default (404)
+                case $default_url . 'category':
+                    require __DIR__ . '/views/category.php';
+                    break;
+                case $default_url . 'product':
+                    require __DIR__. '/views/product.php';
+                    break;
                 default:
-                    header('HTTP/1.0 404 Not found');
+                    print('hek nie');
+//                    require '../views/404.php';
+                    break;
             }
             ?>
         </div>

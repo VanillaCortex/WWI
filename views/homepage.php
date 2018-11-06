@@ -18,7 +18,7 @@ while($category = $categories->fetch()) {
     ?>
     <div class="col-md-4 col-sm-12">
         <div class="nice-box clickable">
-            <a href="views/category.php?category=<?=$category['StockGroupID']?>">
+            <a href="category?<?=$category['StockGroupID']?>">
                 <?= $category['StockGroupName'] ?>
                 <img src="media/images/logo.png" width="100%">
             </a>
