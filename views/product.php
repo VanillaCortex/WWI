@@ -30,8 +30,7 @@ $product = $product->fetch();
         <div class="col-sm-7">
             <div class="nice-box">
 <!--                    <img src="--><?//=$product['Photo']?><!--">-->
-                    <img src="../media/images/no_image.jpg" width="50%">
-                </div>
+<!--                <img src="../media/images/no_image.jpg" width="50%">-->
                 <img src="media/images/logo.png" width="100%">
             </div>
         </div>
@@ -47,17 +46,6 @@ $product = $product->fetch();
             </div>
         </div>
 
-            <div class="col-sm-7">
-                <div class="nice-box">
-                    <p><b>Beschrijving</b></p>
-                    <?php
-                    if(!empty($product['MarketingComments'])) {
-                        print($product['MarketingComments']);
-                    } else {
-                        print('geen beschrijving');
-                    }
-                    ?>
-                </div>
         <div class="col-sm-7">
             <div class="nice-box">
                 <p><b>Beschrijving</b></p>
