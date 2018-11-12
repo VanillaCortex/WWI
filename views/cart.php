@@ -3,6 +3,18 @@ require_once '../conf/config.php';
 
 // Get the url to do stuff with
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
+
+// Get the cart items in an array (id => productid)
+//if(isset($_POST['cartitems'])):
+//    $cartitems = $_POST['cartitems'];
+//endif;
+$cartitems = array(220, 221, 222, 223);
+
+// Get the amount for each product in an array (productid => amount)
+//if(isset($_POST['cartamount'])):
+//    $cartamount = $_POST['cartamount'];
+//endif;
+$cartamount = array(220 => 2, 221 => 4, 222 => 1, 223 => 5);
 ?>
 
 <!DOCTYPE html>
@@ -26,20 +38,56 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
                 <div class="col-sm-12">
                     <div class="nice-box">
                         <?php
-                        $number1 = 0;
-                        $number2 = 0;
-                        $number3 = 0;
-                        $number4 = 0;
+                        // Set totalprice
+                        $totalprice = 0;
+                        
+                        if(!isset($cartitems)):
+                            // If there aren't any products added to the cart yet
+                            echo("Uw winkelmand is leeg");
+                        else:
+                            print("<table>");
+                            foreach($cartitems as $i):
+                                
+                                // Get the name of the cart item
+                                $query1 = "SELECT si.StockItemName FROM stockitems si WHERE si.StockItemID = ?";
+                                $productname = $pdo->prepare($query1);
+                                $productname->execute(array($i));
+                                $productname = $productname->fetch();
+                                
+                                // Get the price of the cart item (AANPASSEN)
+                                $query2 = "SELECT si.RecommendedRetailPrice FROM stockitems si WHERE si.StockItemID = ?";
+                                $price = $pdo->prepare($query2);
+                                $price->execute(array($i));
+                                $price = $price->fetch();
+                                
+                                // Count totalprice
+                                $totalprice += ($price[0] * $cartamount[$i]);
+                                
+                                // Print name, picture, price
+                                print("<tr><td>" . $productname[0] . "</td><td>" . "(plaatje)" . "</td><td>€" . $price[0] . "</td><td>");
+                                
+                                // In a form, print amount added to the cart and a remove button
+                                print("<form>Aantal <input type=\"number\" value=\"" . $cartamount[$i] . "\"> <input type=\"button\" value=\"Verwijder\"></form></td></tr>");
+                                
+                                // Remove item from array
+//                                ...
+                            endforeach;
+                            print("</table>");
+                        endif;
+                        
+                        // Check if any cartamount is higher than the amount in the database
+//                        $query3 = "SELECT *, sih.QuantityOnHand FROM stockitems s WHERE s.StockItemID = ?";
+//                        $f = $pdo->prepare($query1);
+//                        $f->execute(array($i));
+//                        $f = $f->fetch();
                         ?>
-                        <table>
-                            <tr><td>product naam</td><td>plaatje</td><td>prijs</td><td><form>Aantal <input type="number" value="<?=$number1?>"> <input type="button" value="Verwijder"></form></td></tr>
-                            <tr><td>product naam</td><td>plaatje</td><td>prijs</td><td><form>Aantal <input type="number" value="<?=$number2?>"> <input type="button" value="Verwijder"></form></td></tr>
-                            <tr><td>product naam</td><td>plaatje</td><td>prijs</td><td><form>Aantal <input type="number" value="<?=$number3?>"> <input type="button" value="Verwijder"></form></td></tr>
-                            <tr><td>product naam</td><td>plaatje</td><td>prijs</td><td><form>Aantal <input type="number" value="<?=$number4?>"> <input type="button" value="Verwijder"></form></td></tr>
-                        </table>
-                        Totaalprijs
-                        <button>Verder winkelen</button>
-                        <button>Bestelling afronden</button>
+                        Totaalprijs €<?=$totalprice?>
+                        <form action="<?php if($request_uri[0]!=='/WWI/'){ print('../'); }?>">
+                            <input type="submit" value="Verder Winkelen">
+                        </form>
+                        <form action="http://localhost/WWI">
+                            <input type="submit" value="Bestelling Afronden">
+                        </form>
                     </div>
                 </div>
             </div>
