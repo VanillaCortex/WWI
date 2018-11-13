@@ -161,9 +161,9 @@ $this_category = $this_category->fetch();
                             </div>
                             <div class="col-sm-12">
                                 <div class="btn-group mr-2 float-right" role="group" aria-label="First group">
-                                    <a href="category?<?=$category?>/<?=$pagination?>/0"><button type="button" class="btn btn-secondary">X</button></a>
-                                    <a href="category?<?=$category?>/<?=$pagination?>/1"><button type="button" class="btn btn-secondary">></button></a>
-                                    <a href="category?<?=$category?>/<?=$pagination?>/2"><button type="button" class="btn btn-secondary"><</button></a>
+                                    <a href="category?<?=$category?>/<?=$pagination?>/0"><button type="button" class="btn btn-secondary hidden">X</button></a>
+                                    <a href="category?<?=$category?>/<?=$pagination?>/1"><button type="button" class="btn btn-secondary"><i class="fas fa-arrow-up"></i></button></a>
+                                    <a href="category?<?=$category?>/<?=$pagination?>/2"><button type="button" class="btn btn-secondary"><i class="fas fa-arrow-down"></i></button></a>
                                 </div>
                             </div>
                         </div>

@@ -11,7 +11,7 @@ if(isset($arguments)) {
 
 // Get the product we want
 $query = "
-SELECT *, sih.QuantityOnHand
+SELECT s.StockItemID, s.StockItemName, s.RecommendedRetailPrice, s.MarketingComments, s.Photo, sih.QuantityOnHand
 FROM stockitems s
 JOIN stockitemholdings sih ON s.StockItemID = sih.StockItemID
 WHERE s.StockItemID = ?";
@@ -39,8 +39,11 @@ $product = $product->fetch();
             <div class="nice-box">
                 <h3>€<?=$product['RecommendedRetailPrice']?></h3>
                 <!--Winkelwagen doen we met Ajax waarschijnlijk-->
-                <input type="number" min="1" max="<?=$product['QuantityOnHand']?>" value="1">
-                <button>Toevoegen aan winkelwagen</button>
+                <form method="post">
+                    <input type="number" name="aantal" min="1" max="<?=$product['QuantityOnHand']?>" value="1">
+                    <input class="hidden" name="product" type="number" value="<?= $product['StockItemID'] ?>">
+                    <button type="submit">Toevoegen aan winkelwagen</button>
+                </form>
                 <p><?php if($product['QuantityOnHand'] > 0) { echo 'Product is op voorraad'; } else { echo 'Product is niet op voorraad'; } ?></p>
                 <p><b>Voorraad:</b>  <?=$product['QuantityOnHand']?> </p>
             </div>
@@ -65,3 +68,18 @@ $product = $product->fetch();
 
     </div>
 </div>
+
+<?php
+
+if(isset($_POST) && !empty($_POST)) {
+
+    $aantal = $_POST['aantal'];
+    $product = $_POST['product'];
+
+    // Initialize the class
+    $cart = new Cart();
+
+    // Add item to cart
+    $item = $cart->addItemToCart($aantal, $product);
+
+}
