@@ -45,6 +45,9 @@ session_start();
                 case $default_url . 'product':
                     require __DIR__. '/views/product.php';
                     break;
+                case $default_url . 'cart':
+                    require __DIR__ . '/views/cart.php';
+                    break;
                 default:
                     print('hek nie');
 //                    require '../views/404.php';

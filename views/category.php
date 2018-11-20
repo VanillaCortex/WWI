@@ -196,22 +196,6 @@ $this_category = $this_category->fetch();
     <nav aria-label="...">
         <ul class="pagination pagination-lg">
             <?php
-            $x = 0;
-            while($product = $products->fetch()) {
-                $x++;
-                ?>
-                <div class="col-md-4 col-sm-12 <?php if($x > $pagination) { echo 'hidden';   } ?>" id="<?=$x?>">
-                    <div class="nice-box clickable">
-                        <a href="product.php?product=<?=$product['StockItemID']?>">
-                            <?= $product['StockItemName'] ?>
-                            <?=$product['Photo']?>
-                            <img src="../media/images/no_image.jpg" width="50%">
-                            <p><b>Prijs:</b> €<?=$product['RecommendedRetailPrice']?></p>
-                        </a>
-                    </div>
-                </div>
-                <?php
-            }
                 $page_array = range(1, $pages);
                 foreach($page_array as $page) {
                     ?>
