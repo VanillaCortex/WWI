@@ -9,3 +9,6 @@ try {
 } catch (PDOException $p) {
     print('Error! ' . $p->getMessage());
 }
+
+// Global variables
+$default_url = '/WWI/';
