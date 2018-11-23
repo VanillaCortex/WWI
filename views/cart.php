@@ -1,18 +1,14 @@
-
 <style>
     .cart-icon {
         cursor: pointer;
         color: #00BDF3;
     }
-
     .cart-icon i{
         color: #00BDF3;
     }
-
     .cart-amount {
         max-width: 40px;
     }
-
 </style>
 
 <script>

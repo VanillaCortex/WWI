@@ -27,43 +27,41 @@ session_start();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
-        <?php
-        // Header
-        require_once 'views/header.php';
-        ?>
+    <?php
+//<!--        --><
+// Header
+//include 'views/partials/header.php';
+    include 'views/header.php';
 
-        <div class="col-md-10 offset-md-1">
-            <?php
-
-            switch($url) {
-                case $default_url:
-                    require __DIR__ . '/views/homepage.php';
-                    break;
-                case $default_url . 'category':
-                    require __DIR__ . '/views/category.php';
-                    break;
-                case $default_url . 'product':
-                    require __DIR__. '/views/product.php';
-                    break;
-                case $default_url . 'cart':
-                    require __DIR__ . '/views/cart.php';
-                    break;
-                case $default_url . 'confirm':
-                    require __DIR__ .  '/views/orderpage_consumer_items.php';
-                    break;
-                case $default_url . 'method':
-                    require __DIR__ . '/views/orderpage_consumer_method.php';
-                    break;
-                default:
-                    print('hek nie');
+    switch($url) {
+        case $default_url:
+            require __DIR__ . '/views/homepage.php';
+            break;
+        case $default_url . 'category':
+            require __DIR__ . '/views/category.php';
+            break;
+        case $default_url . 'product':
+            require __DIR__. '/views/product.php';
+            break;
+        case $default_url . 'cart':
+            require __DIR__ . '/views/cart.php';
+            break;
+        case $default_url . "search":
+            require 'views/search.php';
+            break;
+        case $default_url . "about":
+            require "views/about.php";
+            break;
+        case $default_url . 'confirm':
+            require __DIR__ .  '/views/orderpage_consumer_items.php';
+            break;
+        case $default_url . 'method':
+            require __DIR__ . '/views/orderpage_consumer_method.php';
+            break;
+        default:
+            print('hek nie');
 //                    require '../views/404.php';
-                    break;
-            }
-            ?>
-        </div>
-
-    </body>
-
-</html>
-
-<?
+            break;
+    }
+include 'views/partials/footer.php';
+?>

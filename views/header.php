@@ -1,15 +1,20 @@
 <?php
 // Inlog if statement hier voor andere weergave
 ?>
-<div class="col-md-10 offset-md-1">
-    <nav class="navbar">
-        <a class="navbar-brand" href="/WWI/">
-            <img src="media/images/logo.png" width="177" height="64">
-        </a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <h4>World Wide Importers</h4>
-            </li>
-        </ul>
+
+
+<div class="fixed-top">
+    <nav class="navbar  navbar-dark bg-dark justify-content-between">
+        <div class="container">
+            <a  class="nav-left" href="/WWI/">
+                <img src="media/images/logo.png"  style="width: 177px;">
+            </a>
+            <form class="form-inline " action="search">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="q">
+           </form>
+            <a class="nav-right" href="cart" >
+                <i class="fas fa-shopping-basket fa-2x"></i>
+            </a>
+        </div>
     </nav>
 </div>

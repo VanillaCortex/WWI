@@ -15,21 +15,88 @@
     text-decoration: none;
 }
 
-.clickable {
-    cursor: pointer;
-}
-
 .nice-box image {
     bottom: 0;
     margin-bottom: 0;
+}
+
+/**/
+body{
+    padding-top: 100px;
+}
+
+.diva{
+    padding-top: 20px;
+    background-color: aliceblue;
+}
+
+.divb{
+    padding-top: 20px;
+    background-color: white;
+}
+
+.head{
+    font-weight: bold;
+}
+
+
+.clickable {
+    cursor: pointer;
 }
 
 .hidden {
     display: none;
 }
 
+.gridItem{
+    text-align: center;
+    align: center;
+}
+
+.price{
+    color:  cornflowerblue ;
+}
+
+.card{
+    margin-bottom: 40px;
+}
+
+.my-icon-background {
+    background-color: #00bdf3;
+}
+
+hr {
+    background-color: #FFFFFF;
+}
+
+.bikini-bottom {
+    min-height: 200px;
+}
+
+
+.clickable {
+    cursor: pointer;
+}
+
+.footer{
+    text-align: center;
+}
+
 .custom-container {
     border: 3px solid #000000;
     padding: 30px 10px 30px 10px;
     margin-bottom: 20px;
+}
+
+.cart-icon {
+    cursor: pointer;
+    color: #00BDF3;
+}
+
+.cart-icon i{
+    color: #00BDF3;
+}
+
+.cart-amount {
+    max-width: 40px;
 }

@@ -21,50 +21,51 @@ $product = $product->fetch();
 
 ?>
 
-<div class="col-md-10 offset-md-1">
-    <div class="row custom-container">
-        <div class="col-sm-12">
-            <h1><?=$product['StockItemName']?></h1>
-        </div>
+    <div style="padding-top: 15px" class="container">
+        <div class="row">
+            <!--Naam van het product-->
+            <div class="col-sm-12">
 
-        <div class="col-sm-7">
-            <div class="nice-box">
-                <img src="media/images/logo.png" width="100%">
+                <br><br><br>
             </div>
-        </div>
-
-        <div class="col-sm-5">
-            <div class="nice-box">
-                <h3>€<?=$product['RecommendedRetailPrice']?></h3>
+            <!--Foto van product (is nu 'no img available')-->
+            <div class="col-md-6">
+                <img width="70%" src="media/images/No_Image_Available.png" alt="">
+            </div>
+            <!--Prijsnotering-->
+            <div class="col-md-6">
+                <h3 class="head"><?= $product['StockItemName'] ?></h3>
+                <br><br>
+                <h4>Prijs per Stuk:</h4>
+                <h2 class="price">€ <?= $product['RecommendedRetailPrice'] ?></h2>
+                <br><br>
+                <p><h6>Vooraad: </h6> <?=$product['QuantityOnHand']?> </p>
                 <form method="post">
-                    <input type="number" name="aantal" min="1" max="<?=$product['QuantityOnHand']?>" value="1">
+                    <input class="form-control" type="number" name="aantal" min="1" max="<?=$product['QuantityOnHand']?>" value="1">
                     <input class="hidden" name="product" type="number" value="<?= $product['StockItemID'] ?>">
-                    <button type="submit">Toevoegen aan winkelwagen</button>
+                    <br>
+                    <button class="float-right btn btn-success" type="submit">Toevoegen aan winkelwagen</button>
                 </form>
-                <p><?php if($product['QuantityOnHand'] > 0) { echo 'Product is op voorraad'; } else { echo 'Product is niet op voorraad'; } ?></p>
-                <p><b>Voorraad:</b>  <?=$product['QuantityOnHand']?> </p>
             </div>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Beschrijving:</h5>
 
-        <div class="col-sm-7">
-            <div class="nice-box">
-                <p><b>Beschrijving</b></p>
                 <?php
                 if(!empty($product['MarketingComments'])) {
                     print($product['MarketingComments']);
+                } else{
+                    print("Hier moet nog een beschrijving aan worden toegevoegd");
                 }
                 ?>
             </div>
-        </div>
-
-        <div class="col-sm-5">
-            <div class="nice-box">
-                <p><b>Comments</b></p>
+            <div class="col-md-6">
+                <h5>Reviews:</h5>
             </div>
         </div>
-
     </div>
-</div>
 
 <?php
 
@@ -79,12 +80,13 @@ if(isset($_POST) && !empty($_POST)) {
     // Add item to cart
     $item = $cart->addItemToCart($aantal, $product);
 
-    $query = "SELECT StockItemGroupID FROM stockitemstockgroups WHERE StockItemID = ?";
+    // Query om snel een category_id op te halen zodat we daar heen kunnen gaan
+    $query = "SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ?";
     $category = $pdo->prepare($query);
     $category->execute(array($product_id));
     $category = $category->fetch();
 
     // Redirect naar de cart
-    header('location: /WWI/category?' . $category);
+    header('location: /WWI/category?' . $category['StockGroupID'] . '');
 
 }
