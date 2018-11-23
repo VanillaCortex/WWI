@@ -48,6 +48,12 @@ session_start();
                 case $default_url . 'cart':
                     require __DIR__ . '/views/cart.php';
                     break;
+                case $default_url . 'confirm':
+                    require __DIR__ .  '/views/orderpage_consumer_items.php';
+                    break;
+                case $default_url . 'method':
+                    require __DIR__ . '/views/orderpage_consumer_method.php';
+                    break;
                 default:
                     print('hek nie');
 //                    require '../views/404.php';
