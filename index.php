@@ -53,10 +53,13 @@ session_start();
             require "views/about.php";
             break;
         case $default_url . 'confirm':
-            require __DIR__ .  '/views/orderpage_consumer_items.php';
+            require __DIR__ . '/views/orderpage_items.php';
             break;
         case $default_url . 'method':
-            require __DIR__ . '/views/orderpage_consumer_method.php';
+            require __DIR__ . '/views/orderpage_method_consumer.php';
+            break;
+        case $default_url . 'method_visitor':
+            require __DIR__ . '/views/orderpage_method_visitor.php';
             break;
         default:
             print('hek nie');
