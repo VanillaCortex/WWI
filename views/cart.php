@@ -172,24 +172,24 @@
                         <tr>
                             <th scope="col">Acties</th>
                             <th scope="col">Naam product</th>
-                            <th scope="col">Plaatje</th>
+<!--                            <th scope="col">Plaatje</th>-->
                             <th scope="col">Aantal</th>
                             <th scope="col">Prijs</th>
                         </tr>
                         </thead>
                         <tbody>
                     <?php
-
-                    // Haal het totaal op en gooi daarna die waarde uit de array zodat het niet stoort
-                    $total = $cart['totaal_prijs'];
-                    unset($cart['totaal_prijs']);
+                    // Set de standaard waarde
+                    $total = 0;
 
                     foreach($cart as $key => $item) {
+                        // Bereken het totaal
+                        $total += $item['aantal'] * $item['prijs_per'];
                         ?>
                         <tr id="line-<?=$key?>">
                             <td><a class="cart-icon hidden save-edit" data-action="save-edit" id="save-edit-<?=$key?>"><i class="fas fa-save"></i></a><a class="cart-icon edit" data-action="edit" id="edit-<?=$key?>" data-id="<?=$key?>"><i class="fas fa-edit"></i></a>  <a href="/WWI/cart?remove=<?=$item['product']?>" class="cart-icon remove" data-action="remove" id="remove-<?=$key?>"><i class="fas fa-trash-alt"></i></a>  </td>
                             <td><a href="/WWI/product?<?=$item['product']?>"><?=$item['product_naam']?></a></td>
-                            <td>//</td>
+<!--                            <td>//</td>-->
                             <td><a class="cart-icon hidden add-one" data-action="add-one" id="add-one-<?=$key?>"><i class="fas fa-plus-square"></i></a> <input class="cart-amount hidden" type="number" value="<?= $item['aantal'] ?>" id="cart-amount-<?=$key?>"> <p id="amount-<?=$key?>"><?=$item['aantal']?></p> <a class="cart-icon hidden subtract-one" data-action="subtract-one" id="subtract-one-<?=$key?>"><i class="fas fa-minus"></i> </a></td>
                             <td id="product-price-<?=$key?>">€<?=$item['prijs_per']*$item['aantal']?></td>
                         </tr>
@@ -200,7 +200,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
+<!--                        <td></td>-->
                         <td id="total-price">€<?=$total?></td>
                     </tr>
                     <?php

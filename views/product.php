@@ -29,8 +29,6 @@ $product = $product->fetch();
 
         <div class="col-sm-7">
             <div class="nice-box">
-<!--                    <img src="--><?//=$product['Photo']?><!--">-->
-<!--                <img src="../media/images/no_image.jpg" width="50%">-->
                 <img src="media/images/logo.png" width="100%">
             </div>
         </div>
@@ -38,7 +36,6 @@ $product = $product->fetch();
         <div class="col-sm-5">
             <div class="nice-box">
                 <h3>€<?=$product['RecommendedRetailPrice']?></h3>
-                <!--Winkelwagen doen we met Ajax waarschijnlijk-->
                 <form method="post">
                     <input type="number" name="aantal" min="1" max="<?=$product['QuantityOnHand']?>" value="1">
                     <input class="hidden" name="product" type="number" value="<?= $product['StockItemID'] ?>">
@@ -81,5 +78,13 @@ if(isset($_POST) && !empty($_POST)) {
 
     // Add item to cart
     $item = $cart->addItemToCart($aantal, $product);
+
+    $query = "SELECT StockItemGroupID FROM stockitemstockgroups WHERE StockItemID = ?";
+    $category = $pdo->prepare($query);
+    $category->execute(array($product_id));
+    $category = $category->fetch();
+
+    // Redirect naar de cart
+    header('location: /WWI/category?' . $category);
 
 }

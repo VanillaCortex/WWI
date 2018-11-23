@@ -66,26 +66,6 @@ class Cart {
         // Check of de orderlines al bestaan, oftwel of de gebruikeer uberhaupt wel een product heeft toegevoegd
         if(isset($_SESSION['orderlines']) && !empty($_SESSION['orderlines'])) {
 
-            // Zet de variable alvast
-            $total = 0;
-
-            //@todo werk totaal hier weg
-            // Loop door alle items heen om het totaal te berekenen
-            foreach($_SESSION['orderlines'] as $product) {
-
-                // Telt het totaal van de prijs bij elkaar op
-                $total += ($product['prijs_per'] * $product['aantal']);
-
-            }
-
-//            if(count($_SESSION['orderlines']) === 1 && isset($_SESSION['orderlines']['total_prijs']) && $_SESSION['orderlines']['totaal_prijs'] === 0) {
-//                unset($_SESSION['orderlines']);
-//                return('Geen producten in de winkelmand!');
-//            }
-
-            // Zet het totaal in de sessie
-            $_SESSION['orderlines']['totaal_prijs'] = $total;
-
             // Return the orderlines
             return($_SESSION['orderlines']);
 
