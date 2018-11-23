@@ -150,7 +150,7 @@ $this_category = $this_category->fetch();
                 <a href="category?<?=$category?>/100"><button class="btn btn-small btn-primary">100</button></a>
             </div>
             <div class="col-md-4">
-                <p>Omschrijving </p>
+<!--                <p>Omschrijving </p>-->
             </div>
             <div class="col-md-4">
                 <p>Sorteren op prijs</p>
@@ -180,10 +180,15 @@ $this_category = $this_category->fetch();
                             <p class="float-left">
                             <h4><?= $product['StockItemName'] ?></h4>
                             </p>
-                            <p class="float-left">
-                                <b>Prijs: </b>€<?=$product['RecommendedRetailPrice']?>
-
+                            <br>
+                            <p class="blackFriday">
+                                <span>€<?=round($product['RecommendedRetailPrice']*1.2,2)?></span>
                             </p>
+                            <p class="price">
+                                <h4>€<?=$product['RecommendedRetailPrice']?></h4>
+                            </p>
+
+
 <!--                            <button class="float-right btn btn-primary">More Info</button>-->
 
                         </strong>

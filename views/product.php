@@ -37,7 +37,11 @@ $product = $product->fetch();
                 <h3 class="head"><?= $product['StockItemName'] ?></h3>
                 <br><br>
                 <h4>Prijs per Stuk:</h4>
-                <h2 class="price">€ <?= $product['RecommendedRetailPrice'] ?></h2>
+                <p>
+                <h2 class="blackFriday">€ <?= round($product['RecommendedRetailPrice']*1.2, 2)  ?></h2>
+                <h2 class="price">€ <?= $product['RecommendedRetailPrice']  ?></h2>
+                </p>
+
                 <br><br>
                 <p><h6>Vooraad: </h6> <?=$product['QuantityOnHand']?> </p>
                 <form method="post">

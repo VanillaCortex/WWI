@@ -2,6 +2,7 @@
 <footer class="navbar navbar-dark bg-dark bikini-bottom">
     <div class="container">
         <div class="col-sm-12">
+            <hr>
             <div class="row">
                 <div class="col-md-6">
                     <h4  style="color: white;">Wide World Importers</h4>
@@ -22,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <hr>
+
                 </div>
             </div>
         </div>

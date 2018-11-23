@@ -9,10 +9,18 @@ $categories->execute();
 ?>
 <div class="divb">
     <div class="container">
-        <h1 class="display-4 head">Welkom op WWI</h1>
-        <h3 class="">Check onze categorieën:</h3>
-        <hr class="my-4">
+        <h1 class="display-4 head centerText">Welkom op WWI</h1>
+
+        <div class="">
+            <img class="centerImg" width="50%" src="media/images/blackFriday.png" alt="">
         </div>
+<!--        <button class="centerImg btn btn-primary">Over Ons</button>-->
+        <br>
+        <div style="display: inline">
+            <h3 class="centerText">Check onze categorieën:</h3>
+        </div>
+        <hr class="my-4">
+    </div>
 </div>
 
 
@@ -35,7 +43,7 @@ $categories->execute();
                     $afbeeldingnaam = "mugs.jpg";
                     break;
                 case 4:
-                    $afbeeldingnaam = "t-shirts.jpg";
+                    $afbeeldingnaam = "shirt.jpg";
                     break;
                 case 6:
                     $afbeeldingnaam = "computing_novelties.jpg";

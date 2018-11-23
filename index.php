@@ -63,5 +63,5 @@ session_start();
 //                    require '../views/404.php';
             break;
     }
-include 'views/partials/footer.php';
+include 'views/footer.php';
 ?>

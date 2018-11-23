@@ -110,7 +110,7 @@ $pages = ceil($count / $pagination);
                 <a href="search?q=<?=$q?>&/100"><button class="btn btn-small btn-primary">100</button></a>
             </div>
             <div class="col-md-4">
-                <p>Omschrijving </p>
+<!--                <p>Omschrijving </p>-->
             </div>
             <div class="col-md-4">
                 <p>Sorteren op prijs</p>

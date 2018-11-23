@@ -12,8 +12,10 @@
             <form class="form-inline " action="search">
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="q">
            </form>
+
             <a class="nav-right" href="cart" >
-                <i class="fas fa-shopping-basket fa-2x"></i>
+                <a href="about">Over ons</a>
+                <i class="fas fa-shopping-basket fa-2x my-icon-color"></i>
             </a>
         </div>
     </nav>
