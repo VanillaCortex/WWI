@@ -95,7 +95,7 @@ $pages = ceil($count / $pagination);
 
 <div class="divb gridItem">
     <div class="container">
-        <h2 class="head"><?= $q ?></h2>
+        <h2 class="head">Resultaten voor: <br> '<?= $q ?>'</h2>
         <br>
 
     </div>

@@ -93,12 +93,13 @@
 
 </script>
 
-<div class="row custom-container">
-    <div class="col-sm-12">
-        <h1>Cart</h1>
-    </div>
-    <div class="col-sm-12">
-        <div class="nice-box">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Cart</h1>
+        </div>
+        <div class="col-sm-12">
+            <div class="">
                 <?php
 
                 // Haal alles wat op dit moment in de cart zit op
@@ -157,23 +158,23 @@
 
                 ?>
                 <div class="alert alert-primary text-center <?= (is_array($cart) ? 'hidden' : '') ?>" role="alert">
-                        <?php if(!is_array($cart)){ print($cart);} ?>
+                    <?php if(!is_array($cart)){ print($cart);} ?>
                 </div>
                 <?php
                 // Check of hij wel gevuld is
                 if(is_array($cart)) {
-                    ?>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Acties</th>
-                            <th scope="col">Naam product</th>
-<!--                            <th scope="col">Plaatje</th>-->
-                            <th scope="col">Aantal</th>
-                            <th scope="col">Prijs</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                ?>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Acties</th>
+                        <th scope="col">Naam product</th>
+                        <!--                            <th scope="col">Plaatje</th>-->
+                        <th scope="col">Aantal</th>
+                        <th scope="col">Prijs</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <?php
                     // Set de standaard waarde
                     $total = 0;
@@ -185,28 +186,30 @@
                         <tr id="line-<?=$key?>">
                             <td><a class="cart-icon hidden save-edit" data-action="save-edit" id="save-edit-<?=$key?>"><i class="fas fa-save"></i></a><a class="cart-icon edit" data-action="edit" id="edit-<?=$key?>" data-id="<?=$key?>"><i class="fas fa-edit"></i></a>  <a href="/WWI/cart?remove=<?=$item['product']?>" class="cart-icon remove" data-action="remove" id="remove-<?=$key?>"><i class="fas fa-trash-alt"></i></a>  </td>
                             <td><a href="/WWI/product?<?=$item['product']?>"><?=$item['product_naam']?></a></td>
-<!--                            <td>//</td>-->
+                            <!--                            <td>//</td>-->
                             <td><a class="cart-icon hidden add-one" data-action="add-one" id="add-one-<?=$key?>"><i class="fas fa-plus-square"></i></a> <input class="cart-amount hidden" type="number" value="<?= $item['aantal'] ?>" id="cart-amount-<?=$key?>"> <p id="amount-<?=$key?>"><?=$item['aantal']?></p> <a class="cart-icon hidden subtract-one" data-action="subtract-one" id="subtract-one-<?=$key?>"><i class="fas fa-minus"></i> </a></td>
                             <td id="product-price-<?=$key?>">€<?=$item['prijs_per']*$item['aantal']?></td>
                         </tr>
-                    <?php
+                        <?php
                     }
                     ?>
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
-<!--                        <td></td>-->
+                        <!--                        <td></td>-->
                         <td id="total-price">€<?=$total?></td>
                     </tr>
                     <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                    }
+                    ?>
+                    </tbody>
+                </table>
 
-            <!-- Afreken knop hier -->
+                <!-- Afreken knop hier -->
 
+            </div>
         </div>
     </div>
+
 </div>

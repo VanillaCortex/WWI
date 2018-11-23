@@ -9,44 +9,17 @@ $categories->execute();
 ?>
 <div class="divb">
     <div class="container">
-        <h1 class="display-4 head">Wide World Importers</h1>
-        <p class="lead">Welkom op onze website.</p>
+        <h1 class="display-4 head">Welkom op WWI</h1>
+        <h3 class="">Check onze categorieën:</h3>
         <hr class="my-4">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur consequuntur cumque doloremque eius eos fuga harum impedit ipsa mollitia nam natus necessitatibus nemo numquam perferendis quam, reiciendis, repellendus sed tempore?</p>
-        <a class="btn btn-primary btn-lg" href="about" role="button">Meer info</a>
-    </div><br><br>
-</div>
-<br>
-<div class="diva">
-    <div class="container">
-        <H2 class="head" align="center">Wij zijn:</H2>
-        <hr>
-        <br>
-        <div class="row">
-            <div class="col-md-4 gridItem">
-                <i class="fas fa-shipping-fast fa-7x"></i>
-                <h5>Snel</h5>
-            </div>
-            <div class="col-md-4 gridItem">
-                <i class="far fa-money-bill-alt fa-7x"></i>
-                <h5>Goedkoop</h5>
-            </div>
-            <div class="col-md-4 gridItem">
-                <i class="far fa-handshake fa-7x"></i>
-                <h5>Betrouwbaar</h5>
-            </div>
         </div>
-        <br>
-        <br>
-        <br>
-
-    </div>
 </div>
-<div class="divb">
+
+
+<div class="diva">
     <div class="container gridItem">
-        <h4 class="head">Check onze categorieën</h4>
-        <hr>
-        <br><br>
+
+
         <div class="row">
         <?php
 
