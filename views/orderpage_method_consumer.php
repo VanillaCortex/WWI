@@ -1,24 +1,5 @@
-<?php
-require_once '../conf/config.php';
-
-// Get the url to do stuff with
-$request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
-?>
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="../media/css/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="../media/javascript/jquery.js" type="text/javascript"></script>
-    </head>
-    
-    <?php
-    // Header
-    require_once 'header.php';
-    ?>
-    
     <div class="col-md-10 offset-md-1">
         <div class="row custom-container">
             <div class="col-sm-12">
@@ -27,7 +8,7 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
                 <div class="nice-box">
                     <form>
                         <div class="row">
-                            <div class="col-md-6">
+<!--                            <div class="col-md-6">
                                 <div class="card-body">
                                     <h6 class="card-title">Contactgegevens:</h6>
                                     <div class="form-group">
@@ -51,9 +32,9 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="card-body">
                                     <h6 class="card-title">Verzendadres:</h6>
                                     <div class="form-group">
@@ -90,7 +71,7 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
                                     
                                     <div class="form-group">
                                         <label for="adres" class="col-form-label">Postcode:</label>
-                                        <input type="text" class="form-control" id="tel" value="0000AA" required>
+                                        <input type="text" class="form-control" id="tel" placeholder="1234 AA" required>
                                         <div class="postcode-feedback">
 
                                         </div>
@@ -98,7 +79,7 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
                                     
                                     <div class="form-group">
                                         <label for="adres" class="col-form-label">Straatnaam en huisnummer:</label>
-                                        <input type="text" class="form-control" id="tel" value="De Straat 000" required>
+                                        <input type="text" class="form-control" id="tel" placeholder="De Straat 000" required>
                                         <div class="straat-feedback">
 
                                         </div>
@@ -126,7 +107,7 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
                                 <div class="card-body">
                                     <h6 class="card-title">Betaalmethode:</h6>
                                     <input type="radio" name="paymentoption" id="ideal" checked="checked">
-                                    <img src="../media/images/ideal.jpeg" width="32" height="32">
+                                    <img src="<?= $request ?>/../media/images/ideal.jpeg" width="32" height="32">
                                     <label for="paymentoption">iDEAL</label>
                                     <div id="show-me">
                                         <label for="banks">Select your bank</label>
@@ -139,15 +120,15 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
                                     </div>
                                     <br>
                                     <input type="radio" name="paymentoption" id="paypal">
-                                    <img src="../media/images/paypal.jpeg" width="32" height="32">
+                                    <img src="<?= $request ?>/../media/images/paypal.jpeg" width="32" height="32">
                                     <label for="paymentoption">PayPal</label>
                                     <br>
                                     <input type="radio" name="paymentoption" id="dogecoin">
-                                    <img src="../media/images/dogecoin.jpeg" width="32" height="32">
+                                    <img src="<?= $request ?>/../media/images/dogecoin.jpeg" width="32" height="32">
                                     <label for="paymentoption">DogeCoin</label>
                                     <br>
                                     <input type="radio" name="paymentoption" id="natura">
-                                    <img src="../media/images/wink.jpeg" width="32" height="32">
+                                    <img src="<?= $request ?>/../media/images/wink.jpeg" width="32" height="32">
                                     <label for="paymentoption">Natura</label>
                                     
                                     <script>

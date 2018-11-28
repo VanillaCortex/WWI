@@ -1,24 +1,5 @@
-<?php
-require_once '../conf/config.php';
-
-// Get the url to do stuff with
-$request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
-?>
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="../media/css/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="../media/javascript/jquery.js" type="text/javascript"></script>
-    </head>
-    
-    <?php
-    // Header
-    require_once 'header.php';
-    ?>
-    
     <div class="col-md-10 offset-md-1">
         <div class="row custom-container">
             <div class="col-sm-12">
