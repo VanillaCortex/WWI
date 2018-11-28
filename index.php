@@ -37,6 +37,9 @@ session_start();
         case $default_url:
             require __DIR__ . '/views/homepage.php';
             break;
+        case $default_url . 'home':
+            require __DIR__ . '/views/homepage.php';
+            break;
         case $default_url . 'category':
             require __DIR__ . '/views/category.php';
             break;

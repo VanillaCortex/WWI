@@ -14,7 +14,7 @@
            </form>
 
             <a class="nav-right" href="cart" >
-                <a href="about">Over ons</a>
+                <a class="my-icon-color" href="about">Over ons</a>
                 <i class="fas fa-shopping-basket fa-2x my-icon-color"></i>
             </a>
         </div>
