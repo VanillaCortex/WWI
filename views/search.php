@@ -1,5 +1,4 @@
 <?php
-//$q = $_GET["q"];
 $q = filter_input(INPUT_GET, "q", FILTER_SANITIZE_STRING);
 
 $pagination = 25;
@@ -47,34 +46,15 @@ switch ($order) {
         break;
 }
 
-//// Check in what order we have to get the products
-//switch ($order) {
-//    case 1:
-//        // Get the products of our Category but ascending
-//        $query = "
-//        SELECT * FROM stockitems WHERE StockItemName LIKE '%$q%'
-//        ORDER BY RecommendedRetailPrice ASC ";
-//        $products = $pdo->prepare($query);
-//        $products->execute(array($category));
-//        break;
-//    case 2:
-//        // Get the products of our Category
-//        $query = "
-//        SELECT * FROM stockitems WHERE StockItemName LIKE '%$q%'
-//        ORDER BY RecommendedRetailPrice DESC";
-//        $products = $pdo->prepare($query);
-//        $products->execute(array($category));
-//        break;
-//    default:
-//        // Get the products of our Category
-//        $query = "
-//        SELECT * FROM stockitems WHERE StockItemName LIKE '%$q%'";
-//        $products = $pdo->prepare($query);
-//        $products->execute(array($category));
-//        break;
-//}
 // Count the amount of products
 $count = $products->rowCount();
+
+if($count == 0) {
+    
+    print("<br><br><br><h1 style=\"text-align: center\">Geen resultaten gevonden voor: " . $q . "</h1><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>");
+    require_once 'footer.php';
+    die;
+}
 // Calculate how many pages we have to be able to scroll through
 $pages = ceil($count / $pagination);
 ?>
