@@ -1,5 +1,5 @@
 <?php
-$q = $_GET["q"];
+$q = $_GET["q"]; print("lol");
 $pagination = 25;
 $order = 0;
 if(isset($arguments)) {
