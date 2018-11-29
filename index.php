@@ -28,9 +28,6 @@ session_start();
     </head>
     <body>
     <?php
-//<!--        --><
-// Header
-//include 'views/partials/header.php';
     include 'views/header.php';
 
     switch($url) {
@@ -63,6 +60,9 @@ session_start();
             break;
         case $default_url . 'method_visitor':
             require __DIR__ . '/views/orderpage_method_visitor.php';
+            break;
+        case $default_url . 'login':
+            require  __DIR__ . '/views/Login.php';
             break;
         default:
             print('hek nie');
