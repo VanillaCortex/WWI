@@ -12,7 +12,7 @@
     </head>
     <body>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-backdrop="false">
           <i class="far fa-user fa-2x"></i>
         </button>
 
@@ -39,7 +39,7 @@
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Wachtwoord invoeren">
                                 <small id="emailHelp" class="form-text text-muted">Het wachtwoord moet voldoen aan onze criteria.</small>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer"> 
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Terug</button>
                                 <button type="submit" class="btn btn-primary">Log in</button>
                             </div>
