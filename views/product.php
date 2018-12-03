@@ -19,6 +19,18 @@ $product = $pdo->prepare($query);
 $product->execute(array($product_id));
 $product = $product->fetch();
 
+    $error = '<br><br>';
+
+    // Als de url error bevat
+    if(array_search('error', $arguments) !== false) {
+        $error = '<div class="alert alert-danger" role="alert">Moet minimaal 1 product bestellen!</div>';
+    }
+
+    // Als de url success bevat
+    if(array_search('success', $arguments) !== false) {
+        $error = '<div class="alert alert-success" role="alert">Product is toegevoegd!</div>';
+    }
+
 ?>
 
     <div style="padding-top: 15px" class="container">
@@ -42,7 +54,8 @@ $product = $product->fetch();
                 <h2 class="price">€ <?= $product['RecommendedRetailPrice']  ?></h2>
                 </p>
 
-                <br><br>
+                <?= $error ?>
+
                 <p><h6>Vooraad: </h6> <?=$product['QuantityOnHand']?> </p>
                 <form method="post">
                     <input class="form-control" type="number" name="aantal" min="1" max="<?=$product['QuantityOnHand']?>" value="1">
@@ -78,19 +91,19 @@ if(isset($_POST) && !empty($_POST)) {
     $aantal = $_POST['aantal'];
     $product = $_POST['product'];
 
+    if(empty($aantal)) {
+        // Refresh de pagina met een error
+        header("Refresh:0; url=product?" . $product_id . '/error');
+        die;
+    }
+
     // Initialize the class
     $cart = new Cart();
 
     // Add item to cart
     $item = $cart->addItemToCart($aantal, $product);
 
-    // Query om snel een category_id op te halen zodat we daar heen kunnen gaan
-    $query = "SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ?";
-    $category = $pdo->prepare($query);
-    $category->execute(array($product_id));
-    $category = $category->fetch();
-
-    // Redirect naar de cart
-    header('location: /WWI/category?' . $category['StockGroupID'] . '');
+    // Refresh de pagina met een success bericht
+    header("Refresh:0; url=product?" . $product_id . '/success');
 
 }

@@ -17,6 +17,9 @@ $request = $_SERVER['REQUEST_URI'];
 
 session_start();
 
+// Standaar error variable maken zodat we deze overal kunnen overschrijven met een error message indien nodig
+$error = null;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,11 +65,10 @@ session_start();
             require __DIR__ . '/views/orderpage_method_visitor.php';
             break;
         case $default_url . 'login':
-            require  __DIR__ . '/views/Login.php';
+            require __DIR__ . '/views/registratie.php';
             break;
         default:
             print('hek nie');
-//                    require '../views/404.php';
             break;
     }
 include 'views/footer.php';

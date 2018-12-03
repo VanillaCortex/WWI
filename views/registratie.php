@@ -15,7 +15,7 @@
         <?php
 
             if(isset($_POST)) {
-                ////controleren of alle infortmatie is ingevuld
+                //controleren of alle infortmatie is ingevuld
                 if(empty($_POST["emailadress"])) {
                     print("vul een e-mailadres in!");
                     die;

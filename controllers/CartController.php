@@ -42,6 +42,10 @@ class Cart {
                 'prijs_per' => $data['RecommendedRetailPrice']
             ];
 
+            if($aantal < 1) {
+                unset($orderline);
+            }
+
             // Als de orderlines Array nog niet bestaat binnen de sessie, maak hem dan aan
             if(!isset($_SESSION['orderlines'])) {
                 $_SESSION['orderlines'] = [];
@@ -86,7 +90,9 @@ class Cart {
             unset($_SESSION['orderlines'][$id]);
 
             // refresh de pagina/redirect naar de cart
-            header('Location: /WWI/cart');
+//            header('Location: /WWI/cart');
+            // Vieze mannier om te redirecten met javascript
+            echo '<script>window.location.replace("/WWI/cart");</script>';
 
         } else {
             // Als hij niet bestaat of leeg is return null zodat er niks mee gebeurd
@@ -101,9 +107,22 @@ class Cart {
         // Check of de sessie bestaat en niet leeg is
         if(isset($_SESSION) && !empty($_SESSION)) {
 
-            $_SESSION['orderlines'][$id]['aantal'] = $aantal;
+            $query = "
+            SELECT QuantityOnHand
+            FROM stockitemholdings
+            WHERE StockItemID = ?";
+            $product = $this->pdo->prepare($query);
+            $product->execute(array($id));
+            $product = $product->fetch();
 
-            header('Location: /WWI/cart');
+            if($aantal > $product['QuantityOnHand']) {
+                echo '<script>window.location.replace("/WWI/cart?error");</script>';
+                die;
+            }
+            $_SESSION['orderlines'][$id]['aantal'] = floor($aantal);
+
+//            header('Location: /WWI/cart');
+            echo '<script>window.location.replace("/WWI/cart");</script>';
 
         } else {
 
