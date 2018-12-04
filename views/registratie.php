@@ -14,7 +14,7 @@
 
         <?php
 
-            if(isset($_POST)) {
+            if(isset($_POST) && isset($_POST['emailadress']) && isset($_POST['name']) && isset($_POST['password'])) {
                 //controleren of alle infortmatie is ingevuld
                 if(empty($_POST["emailadress"])) {
                     print("vul een e-mailadres in!");
@@ -49,7 +49,6 @@
                 VALUES (':PersonID', 'testuser', ':name' , 'user', 1 ,
                 0 , ':hashedpw' , 1 , 0 , 
                 0 , ':emailadres' ,  '2', '9999-12-31 23:59:59', ' 9999-12-31 23:59:59' )";
-                print("help");
                 $insert = $pdo->prepare($query);
                 $insert->bindParam(':PersonID', $maxpersonid, PDO::PARAM_INT);
                 $insert->bindParam(":name", $name, PDO::PARAM_STR);

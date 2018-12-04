@@ -4,6 +4,7 @@ require_once 'conf/config.php';
 
 // Controllers
 require_once  'controllers/CartController.php';
+require_once  'controllers/UserController.php';
 
 // Get the URL to use in other places
 $whole_url = parse_url($_SERVER['REQUEST_URI']);
@@ -68,12 +69,15 @@ $error = null;
         case $default_url . 'method_visitor':
             require __DIR__ . '/views/orderpage_method_visitor.php';
             break;
-        case $default_url . 'login':
+        case $default_url . 'registratie':
             require __DIR__ . '/views/registratie.php';
             break;
         default:
             print('hek nie');
             break;
     }
-include 'views/footer.php';
+
+    include 'views/modals/inlog.php';
+
+    include 'views/footer.php';
 ?>
