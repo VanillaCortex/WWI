@@ -37,13 +37,13 @@ $product = $product->fetch();
         <div class="row">
             <!--Naam van het product-->
             <div class="col-sm-12">
-
                 <br><br><br>
             </div>
-            <!--Foto van product (is nu 'no img available')-->
+
             <div class="col-md-6">
-                <img width="70%" src="media/images/No_Image_Available.png" alt="">
+                <?php include 'partials/carousel.php'; ?>
             </div>
+
             <!--Prijsnotering-->
             <div class="col-md-6">
                 <h3 class="head"><?= $product['StockItemName'] ?></h3>
