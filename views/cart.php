@@ -123,7 +123,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td id="total-price">€<?=$total?></td>
+                            <td id="total-price"><strong>€<?=$total?></strong></td>
                         </tr>
                     <?php
                     }

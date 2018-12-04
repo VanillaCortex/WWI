@@ -1,76 +1,150 @@
 <!DOCTYPE html>
 <html>
     <div class="col-md-10 offset-md-1">
-        <div class="row custom-container">
+        <div class="row container">
             <div class="col-sm-12">
-                Winkelmand > Gegevens nakijken > Bevestig uw winkelmand
-                <h2>Bevestig uw winkelmand</h2>
-                <div class="nice-box">
-                    <div class="col-sm-12 col-md-12 col-md-offset-1">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Productnaam</th>
-                                    <th>Afbeelding</th>
-                                    <th>Hoeveelheid</th>
-                                    <th class="text-center">Prijs</th>
-                                    <th class="text-center">Totaal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="col-sm-8 col-md-6">
-                                        <h6 class="media-heading">Test</h6>
-                                    </td>
-                                    <td class="col-sm-1 col-md-1" style="text-align: center">
-                                        [X]
-                                    </td>
-                                    <td class="col-sm-1 col-md-1" style="text-align: center">
-                                        0
-                                    </td>
-                                    <td class="col-sm-1 col-md-1" style="text-align: center">
-                                        €0,00
-                                    </td>
-                                    <td class="col-sm-1 col-md-1" style="text-align: center">
-                                        €0,00
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td><h6>Subtotaal</h6></td>
-                                    <td class="text-right"><strong>$24.59</strong></td>
-                                </tr>
-                                <tr>
-                                    <td><h6>Geschatte verzendkosten</h6></td>
-                                    <td class="text-right"><strong>$6.94</strong></td>
-                                </tr>
-                                <tr>
-                                    <td><h6>Totaal</h6></td>
-                                    <td class="text-right"><strong>$31.53</strong></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-left">
-                                            <button onclick="window.location.href='/WWI/cart'" class="btn btn-default">
-                                                Wijzig uw winkelmand
+                <div class="col-sm-12 col-md-12 col-md-offset-1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1>Bevestig uw winkelmand</h1>
+                            </div>
+                            <div class="col-sm-12">
+                                <div>
+                                    <?php
+
+                                    // Haal alles wat op dit moment in de cart zit op
+                                    $supreme_cart = new Cart();
+                                    $cart = $supreme_cart->getCart();
+
+                                    // Als er argumenten achter de url staan
+                                    if(isset($arguments)) {
+
+                                        // Als de url 'remove=' bevat
+                                        if(strpos($request, 'remove=') !== false) {
+
+                                            // Zoek naar de key in de array waar de waarde 'remove=' bevat
+                                            $key = array_search ('remove=', $arguments);
+
+                                            // haal het product id op
+                                            $remove = $arguments[$key];
+                                            $remove = str_replace('remove=', '', $remove);
+
+                                            // Verwijder de lijn van de cart
+                                            $removed = $supreme_cart->removeLineFromCart($remove);
+                                        }
+
+                                        // Als de url mutate= bevat
+                                        if(strpos($request, 'mutate=') !== false) {
+
+                                            // Zoek naar de key in de array waar de waarde 'mutate=' staat
+                                            $key = array_search('mutate=', $arguments);
+
+                                            // Haal het product id op
+                                            $mutate = $arguments[$key];
+                                            $mutate = str_replace('mutate=', '', $mutate);
+
+                                            // Splijt de string tussen de '-'
+                                            $data = explode('-', $mutate);
+
+                                            // Check of we er de goede data uit hebben
+                                            if(is_array($data)) {
+
+                                                // Haal het id er uit
+                                                $id = $data[0];
+
+                                                // Haal het aantal er uit
+                                                $aantal = $data[1];
+
+                                                // Muteer het aantal van een product
+                                                $mutated = $supreme_cart->updateAantal($id, $aantal);
+
+                                            } else {
+                                                header('Location: /WWI/cart');
+                                            }
+
+                                        }
+
+                                        // Check of er een error is
+                                        if(in_array('error', $arguments)) {
+
+                                            $error = '<div class="alert alert-danger" role="alert">Oops! Er is iets mis gegaan. Probeer het opnieuw of voer correcte data in</div>';
+
+                                        }
+
+                                    }
+
+                                    ?>
+                                    <div class="alert alert-primary text-center <?= (is_array($cart) ? 'hidden' : null) ?>" role="alert"><?php if(!is_array($cart)){ print($cart);} ?></div>
+                                    <?php
+                                    // Check of hij wel gevuld is
+                                    if(is_array($cart)) {
+                                        ?>
+
+                                        <?= $error ?>
+
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Naam product</th>
+                                                <th scope="col">Prijs per product</th>
+                                                <th scope="col">Aantal</th>
+                                                <th scope="col">Prijs</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                            // Set de standaard waarde
+                                            $total = 0;
+
+                                            foreach($cart as $key => $item) {
+                                                // Bereken het totaal
+                                                $total += $item['aantal'] * $item['prijs_per'];
+                                                ?>
+                                                <tr id="line-<?=$key?>">
+                                                    <td><a href="/WWI/product?<?=$item['product']?>"><?=$item['product_naam']?></a></td>
+                                                    <td>€<?= floatval($item['prijs_per']) ?></td>
+                                                    <td><a class="cart-icon hidden add-one" data-action="add-one" id="add-one-<?=$key?>"><i class="fas fa-plus-square"></i></a> <input class="cart-amount hidden" type="number" value="<?= $item['aantal'] ?>" id="cart-amount-<?=$key?>" data-action="change-amount"> <p id="amount-<?=$key?>"><?=$item['aantal']?></p> <a class="cart-icon hidden subtract-one" data-action="subtract-one" id="subtract-one-<?=$key?>"><i class="fas fa-minus"></i> </a></td>
+                                                    <td id="product-price-<?=$key?>">€<?=floatval($item['prijs_per']*$item['aantal'])?></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td id="total-price"><strong>€<?=$total?></strong></td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">
+                                        <button onclick="window.location.href='/WWI/cart'" class="btn btn-default">
+                                            Wijzig uw winkelmand
+                                        </button>
+                                        <?php
+                                        if(FALSE){ ?>
+                                            <button onclick="window.location.href='/WWI/method'" class="btn btn-primary">
+                                                Afrekenen
                                             </button>
-                                            <?php
-                                            if(FALSE){ ?>
-                                                <button onclick="window.location.href='/WWI/method'" class="btn btn-primary">
-                                                    Bevestigen
-                                                </button>
-                                            <?php
-                                            } else { ?>
-                                                <button onclick="window.location.href='/WWI/method_visitor'" class="btn btn-primary">
-                                                    Bevestigen
-                                                </button>
-                                            <?php
-                                            }; ?>
+                                        <?php
+                                        } else { ?>
+                                            <button onclick="window.location.href='/WWI/method_visitor'" class="btn btn-primary">
+                                                Afrekenen
+                                            </button>
+                                        <?php
+                                        }; ?>
                                     </td>
-                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
