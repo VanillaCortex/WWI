@@ -54,15 +54,21 @@
                                 </tr>
                                 <tr>
                                     <td class="text-left">
-                                        <button type="button" class="btn btn-default">
-                                            Terug
-                                        </button>
-                                        <button type="button" class="btn btn-warning">
-                                            Wijzigen
-                                        </button>
-                                        <button type="button" class="btn btn-success">
-                                            Bevestigen
-                                        </button>
+                                            <button onclick="window.location.href='/WWI/cart'" class="btn btn-default">
+                                                Wijzig uw winkelmand
+                                            </button>
+                                            <?php
+                                            if(FALSE){ ?>
+                                                <button onclick="window.location.href='/WWI/method'" class="btn btn-primary">
+                                                    Bevestigen
+                                                </button>
+                                            <?php
+                                            } else { ?>
+                                                <button onclick="window.location.href='/WWI/method_visitor'" class="btn btn-primary">
+                                                    Bevestigen
+                                                </button>
+                                            <?php
+                                            }; ?>
                                     </td>
                                     <td></td>
                                 </tr>

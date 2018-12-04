@@ -147,12 +147,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card-body">
-                                    <input type="checkbox" name="accept">Accepteer de gebruikersvoorwaarden</input>
+                                    <input type="checkbox" name="accept"> Accepteer de gebruikersvoorwaarden</input>
                                     <br><br>
-                                    <button type="button" class="btn btn-default">
+                                    <button onclick="window.location.href='/WWI/confirm'" class="btn btn-default">
                                         Terug
                                     </button>
-                                    <button type="button" class="btn btn-success">
+                                    <button onclick="window.location.href='/WWI/pay'" type="submit" class="btn btn-primary">
                                         Bevestigen
                                     </button>
                                 </div>

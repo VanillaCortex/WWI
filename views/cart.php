@@ -130,6 +130,12 @@
                     ?>
                     </tbody>
                 </table>
+                <button onclick="window.history.back()" class="btn btn-default">
+                    Terug
+                </button>
+                <button onclick="window.location.href='/WWI/confirm'" type="submit" class="btn btn-primary">
+                    Bevestig
+                </button>
             </div>
         </div>
     </div>

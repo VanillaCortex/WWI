@@ -63,6 +63,7 @@ $product = $product->fetch();
                     <br>
                     <button class="float-right btn btn-success" type="submit">Toevoegen aan winkelwagen</button>
                 </form>
+            <button onclick="window.history.back()" class="btn btn-default">Terug</button>
             </div>
         </div>
         <br>
