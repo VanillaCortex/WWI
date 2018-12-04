@@ -123,13 +123,19 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td id="total-price">€<?=$total?></td>
+                            <td id="total-price"><strong>€<?=$total?></strong></td>
                         </tr>
                     <?php
                     }
                     ?>
                     </tbody>
                 </table>
+                <button onclick="window.history.back()" class="btn btn-default">
+                    Terug
+                </button>
+                <button onclick="window.location.href='/WWI/confirm'" type="submit" class="btn btn-primary">
+                    Bevestig
+                </button>
             </div>
         </div>
     </div>
