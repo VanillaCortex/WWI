@@ -1,5 +1,4 @@
 <?php
-
 if(isset($arguments)) {
     if(isset($arguments[0])) {
         $product_id = $arguments[0];
@@ -30,9 +29,7 @@ $product = $product->fetch();
     if(array_search('success', $arguments) !== false) {
         $error = '<div class="alert alert-success" role="alert">Product is toegevoegd!</div>';
     }
-
 ?>
-
     <div style="padding-top: 15px" class="container">
         <div class="row">
             <!--Naam van het product-->
@@ -49,17 +46,15 @@ $product = $product->fetch();
                 <h3 class="head"><?= $product['StockItemName'] ?></h3>
                 <br><br>
                 <h4>Prijs per Stuk:</h4>
-                <p>
                 <h2 class="blackFriday">€ <?= round($product['RecommendedRetailPrice']*1.2, 2)  ?></h2>
                 <h2 class="price">€ <?= $product['RecommendedRetailPrice']  ?></h2>
-                </p>
 
                 <?= $error ?>
 
-                <p><h6>Vooraad: </h6> <?=$product['QuantityOnHand']?> </p>
+                <h6>Vooraad: </h6><div><?=$product['QuantityOnHand']?></div>
                 <form method="post">
                     <input class="form-control" type="number" name="aantal" min="1" max="<?=$product['QuantityOnHand']?>" value="1">
-                    <input class="hidden" name="product" type="number" value="<?= $product['StockItemID'] ?>">
+                    <input class="hidden" name="product" type="number" value="<?=$product['StockItemID']?>">
                     <br>
                     <button class="float-right btn btn-success" type="submit">Toevoegen aan winkelwagen</button>
                 </form>
@@ -75,7 +70,7 @@ $product = $product->fetch();
                 if(!empty($product['MarketingComments'])) {
                     print($product['MarketingComments']);
                 } else{
-                    print("Hier moet nog een beschrijving aan worden toegevoegd");
+                    // Nog niks doen hier
                 }
                 ?>
             </div>
@@ -84,7 +79,6 @@ $product = $product->fetch();
             </div>
         </div>
     </div>
-
 <?php
 
 if(isset($_POST) && !empty($_POST)) {
@@ -94,7 +88,8 @@ if(isset($_POST) && !empty($_POST)) {
 
     if(empty($aantal)) {
         // Refresh de pagina met een error
-        header("Refresh:0; url=product?" . $product_id . '/error');
+//        header("Refresh:0; url=product?" . $product_id . '/error');
+        echo '<script>window.location.replace("/WWI/product?' . $product_id . '/error");</script>';
         die;
     }
 
@@ -105,6 +100,8 @@ if(isset($_POST) && !empty($_POST)) {
     $item = $cart->addItemToCart($aantal, $product);
 
     // Refresh de pagina met een success bericht
-    header("Refresh:0; url=product?" . $product_id . '/success');
+//    header("Refresh:0; url=product?" . $product_id . '/success');
+    echo '<script>window.location.replace("/WWI/product?' . $product_id . '/success");</script>';
 
 }
+?>
