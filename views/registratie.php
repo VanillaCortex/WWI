@@ -1,15 +1,29 @@
 <html>
     <head>
-        <title>Login page</title>
+        <title>Registratie</title>
     </head>
-    <h1>Create your account</h1>
-    <body> 
+    <div class = centerText>
+        <i class="fas fa-user-plus fa-7x"></i>
+    </div>
+    <body>
         <form method ="post" action="">
-        <input name = "emailadress" type = 'email'> E-Mailadress <br>
-        <input name = "name" type = 'text'> Name <br>
-        <input name = "password" type = "password" minlength= "2" maxlength = "30" > Password (needs to be 10 characters or more) <br>
-        <input name = "confirmpassword" type = "password" minlength = "2" maxlength = "30" > Confirm Password (must match the previous password) <br>
-        <input name = "bevestig account" type = "submit" value = "Bevestig account" > <br>
+            <div class="container">
+                <div class="row">
+                    <div class="form-group col-md-3">
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        E-Mailadress<input name = "emailadress" type = 'email' class="form-control"> <br>
+                        Name<input name = "name" type = 'text' class="form-control"> <br>
+                        Password (needs to be 10 characters or more) <input name = "password" type = "password" minlength= "10" maxlength = "30" class="form-control"> <br>
+                        Confirm Password (must match the previous password)<input name = "confirmpassword" type = "password" minlength = "10" maxlength = "30" class="form-control" > <br>
+                        <input name = "bevestig account" type = "submit" value = "Bevestig account" class="btn btn-primary"> <br>
+                    </div>
+                    <div class="form-group col-md-3">
+
+                    </div>
+                </div>
+            </div>
         </form>
 
         <?php
