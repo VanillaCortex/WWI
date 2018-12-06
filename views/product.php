@@ -10,7 +10,7 @@ if(isset($arguments)) {
 
 // Get the product we want
 $query = "
-SELECT s.StockItemID, s.StockItemName, s.RecommendedRetailPrice, s.MarketingComments, s.Photo, sih.QuantityOnHand
+SELECT s.StockItemID, s.StockItemName, s.RecommendedRetailPrice, s.MarketingComments, sih.QuantityOnHand
 FROM stockitems s
 JOIN stockitemholdings sih ON s.StockItemID = sih.StockItemID
 WHERE s.StockItemID = ?";
@@ -88,7 +88,6 @@ if(isset($_POST) && !empty($_POST)) {
 
     if(empty($aantal)) {
         // Refresh de pagina met een error
-//        header("Refresh:0; url=product?" . $product_id . '/error');
         echo '<script>window.location.replace("/WWI/product?' . $product_id . '/error");</script>';
         die;
     }
@@ -100,7 +99,6 @@ if(isset($_POST) && !empty($_POST)) {
     $item = $cart->addItemToCart($aantal, $product);
 
     // Refresh de pagina met een success bericht
-//    header("Refresh:0; url=product?" . $product_id . '/success');
     echo '<script>window.location.replace("/WWI/product?' . $product_id . '/success");</script>';
 
 }

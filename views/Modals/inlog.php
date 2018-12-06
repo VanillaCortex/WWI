@@ -34,8 +34,10 @@
 
     if(isset($_POST['inlog_email']) && !empty($_POST['inlog_email']) && isset($_POST['inlog_password']) && !empty($_POST['inlog_password'])) {
 
+        // Log de gebruiker in als alles goed is ingevuld is
         $user = new User();
         $user = $user->login($_POST['inlog_email'], $_POST['inlog_password']);
+        die;
 
     }
 ?>

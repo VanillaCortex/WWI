@@ -17,63 +17,6 @@
                                     $supreme_cart = new Cart();
                                     $cart = $supreme_cart->getCart();
 
-                                    // Als er argumenten achter de url staan
-                                    if(isset($arguments)) {
-
-                                        // Als de url 'remove=' bevat
-                                        if(strpos($request, 'remove=') !== false) {
-
-                                            // Zoek naar de key in de array waar de waarde 'remove=' bevat
-                                            $key = array_search ('remove=', $arguments);
-
-                                            // haal het product id op
-                                            $remove = $arguments[$key];
-                                            $remove = str_replace('remove=', '', $remove);
-
-                                            // Verwijder de lijn van de cart
-                                            $removed = $supreme_cart->removeLineFromCart($remove);
-                                        }
-
-                                        // Als de url mutate= bevat
-                                        if(strpos($request, 'mutate=') !== false) {
-
-                                            // Zoek naar de key in de array waar de waarde 'mutate=' staat
-                                            $key = array_search('mutate=', $arguments);
-
-                                            // Haal het product id op
-                                            $mutate = $arguments[$key];
-                                            $mutate = str_replace('mutate=', '', $mutate);
-
-                                            // Splijt de string tussen de '-'
-                                            $data = explode('-', $mutate);
-
-                                            // Check of we er de goede data uit hebben
-                                            if(is_array($data)) {
-
-                                                // Haal het id er uit
-                                                $id = $data[0];
-
-                                                // Haal het aantal er uit
-                                                $aantal = $data[1];
-
-                                                // Muteer het aantal van een product
-                                                $mutated = $supreme_cart->updateAantal($id, $aantal);
-
-                                            } else {
-                                                header('Location: /WWI/cart');
-                                            }
-
-                                        }
-
-                                        // Check of er een error is
-                                        if(in_array('error', $arguments)) {
-
-                                            $error = '<div class="alert alert-danger" role="alert">Oops! Er is iets mis gegaan. Probeer het opnieuw of voer correcte data in</div>';
-
-                                        }
-
-                                    }
-
                                     ?>
                                     <div class="alert alert-primary text-center <?= (is_array($cart) ? 'hidden' : null) ?>" role="alert"><?php if(!is_array($cart)){ print($cart);} ?></div>
                                     <?php
@@ -133,7 +76,7 @@
                                             Wijzig uw winkelmand
                                         </button>
                                         <?php
-                                        if(FALSE){ ?>
+                                        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1){ ?>
                                             <button onclick="window.location.href='/WWI/method'" class="btn btn-primary">
                                                 Afrekenen
                                             </button>

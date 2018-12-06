@@ -26,7 +26,7 @@ class Cart {
         } else {
             // Haal wat additionele informatie op over het product, zodat we dit later niet meer hoeven te doen
             $query = "
-            SELECT s.StockItemName, s.RecommendedRetailPrice
+            SELECT s.StockItemName, s.RecommendedRetailPrice, s.UnitPackageID, s.TaxRate, s.UnitPrice
             FROM stockitems s
             WHERE s.StockItemID = ?
             ";
@@ -39,7 +39,10 @@ class Cart {
                 "product" => $product,
                 "aantal" => $aantal,
                 'product_naam' => $data['StockItemName'],
-                'prijs_per' => $data['RecommendedRetailPrice']
+                'prijs_per' => $data['RecommendedRetailPrice'],
+                'UnitPackageID' => $data['UnitPackageID'],
+                'TaxRate' => $data['TaxRate'],
+                'UnitPrice' => $data['UnitPrice']
             ];
 
             if($aantal < 1) {
@@ -89,8 +92,6 @@ class Cart {
             // Unset/verwijderen de orderline die we verwijderd willen hebben
             unset($_SESSION['orderlines'][$id]);
 
-            // refresh de pagina/redirect naar de cart
-//            header('Location: /WWI/cart');
             // Vieze mannier om te redirecten met javascript
             echo '<script>window.location.replace("/WWI/cart");</script>';
 
@@ -121,7 +122,6 @@ class Cart {
             }
             $_SESSION['orderlines'][$id]['aantal'] = floor($aantal);
 
-//            header('Location: /WWI/cart');
             echo '<script>window.location.replace("/WWI/cart");</script>';
 
         } else {

@@ -22,8 +22,9 @@ switch ($order) {
     case 1:
         // Get the products of our Category but ascending
         $query = "
-        SELECT s.* 
+        SELECT s.*, pi.image 
         FROM stockitems s 
+        LEFT JOIN product_images pi ON pi.product_id = s.StockItemID
         WHERE s.StockItemID 
         IN(
         SELECT b.StockItemId 
@@ -36,8 +37,9 @@ switch ($order) {
     case 2:
         // Get the products of our Category
         $query = "
-        SELECT s.* 
+        SELECT s.*, pi.image
         FROM stockitems s 
+        LEFT JOIN product_images pi ON pi.product_id = s.StockItemID
         WHERE s.StockItemID 
         IN(
         SELECT b.StockItemId 
@@ -50,8 +52,9 @@ switch ($order) {
     default:
         // Get the products of our Category
         $query = "
-        SELECT s.* 
+        SELECT s.*, pi.image
         FROM stockitems s 
+        LEFT JOIN product_images pi ON pi.product_id = s.StockItemID
         WHERE s.StockItemID 
         IN(
         SELECT b.StockItemId 
@@ -174,7 +177,11 @@ $this_category = $this_category->fetch();
                 <div class="col-md-4 cardSpace <?php if($x>$pagination){echo 'hidden';} ?>" id="<?=$x?>" >
                     <div class="card">
                         <a href="product?<?=$product['StockItemID']?>">
-                            <img class="card-img-top" src="media/images/No_Image_Available.png" alt=""><br>
+                            <?php if(!is_null($product['image'])) { ?>
+                                <img class="card-img-top" src="media/images/products/<?=$product['image']?>"><br>
+                            <?php } else { ?>
+                                <img class="card-img-top" src="media/images/No_Image_Available.png" alt=""><br>
+                            <?php } ?>
                         </a>
                         <strong>
                             <p class="float-left">
@@ -187,10 +194,6 @@ $this_category = $this_category->fetch();
                             <p class="price">
                                 <h4>€<?=$product['RecommendedRetailPrice']?></h4>
                             </p>
-
-
-<!--                            <button class="float-right btn btn-primary">More Info</button>-->
-
                         </strong>
                     </div>
                 </div>
