@@ -45,7 +45,7 @@
 
                                 <div class="form-group">
                                     <label class="col-form-label">Postcode:</label>
-                                    <input type="text" name = "postcode" class="form-control" id="tel" placeholder="1234 AA" required>
+                                    <input type="text" name = "postcode" class="form-control" id="postcode" placeholder="1234 AA" required>
                                     <div class="postcode-feedback">
 
                                     </div>
@@ -53,7 +53,7 @@
 
                                 <div class="form-group">
                                     <label class="col-form-label">Straatnaam en huisnummer:</label>
-                                    <input type="text" name ="adres" class="form-control" id="tel" placeholder="De Straat 000" required>
+                                    <input type="text" name ="adres" class="form-control" id="adres" placeholder="De Straat 000" required>
                                     <div class="straat-feedback">
 
                                     </div>
@@ -139,20 +139,27 @@
 </div>
 </html>
 <?php
-print_r($_POST);
-if(empty($_POST["paymentoption"])) {
-    print("U moet een betaalmethode kiezen");
-    die;
-}
-if(empty($_POST["verzendmethode"])) {
-    print("U moet een verzendmethode kiezen");
-    die;
-}
-if(empty($_POST["accept"])) {
-    print("Accepteer alstublieft de gebruiksvoorwaarden");
-    die;
-} else {
-    //naar de betaalpagina gaan
+
+// Check of de post bestaat
+if(isset($_POST) && !empty($_POST)) {
+    // Check per veld of deze goed is ingevuld
+    if (!empty($_POST) && empty($_POST["paymentoption"])) {
+        print("U moet een betaalmethode kiezen");
+        die;
+    }
+    if (!empty($_POST) && empty($_POST["verzendmethode"])) {
+        print("U moet een verzendmethode kiezen");
+        die;
+    }
+    if (!empty($_POST) && empty($_POST["accept"])) {
+        print("Accepteer alstublieft de gebruiksvoorwaarden");
+        die;
+    }
+
+    // Als alles voldoet aan de voorwaarden dan maken we de order aan
+    $supreme_order = new Order();
+    $order = $supreme_order->create();
+
 }
 
 

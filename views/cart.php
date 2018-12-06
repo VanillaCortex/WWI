@@ -105,6 +105,7 @@
                         $total = 0;
 
                         foreach($cart as $key => $item) {
+
                             // Bereken het totaal
                             $total += $item['aantal'] * $item['prijs_per'];
                             ?>

@@ -6,46 +6,47 @@
             Winkelmand > Gegevens nakijken
             <h2>Gegevens nakijken</h2>
                 <div class="nice-box">
-                    <form>
+                    <form method = "post" action="">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card-body">
                                     <h6 class="card-title">Billing information:</h6>
                                         <div class="form-group">
                                             <label for="sex">Sex</label>
-                                                <select id="sex" class="form-control">
+                                                <select name = "sex" id="sex" class="form-control">
                                                     <option value="...">...</option>
                                                     <option value="Mr.">Mr.</option>
                                                     <option value="Ms.">Ms.</option>
                                                     <option value="Alien ">Alien</option>
+                                                    <option value="Snowflake">Special Snowflake</option>
                                             </select>
                                         </div>
 
                                     <div class="form-group">
                                          <label for="firstname">First Name</label>
-                                        <input type="text" class="form-control" id="firstname">
+                                        <input name = "firstname" type="text" class="form-control" id="firstname">
                                     </div>
 
                                     <div class="form-group">
                                          <label for="prefix">Prefix</label>
-                                        <input type="text" class="form-control" id="prefix">
+                                        <input name = "prefix" type="text" class="form-control" id="prefix">
                                     </div>
 
                                     <div class="form-group">
                                          <label for="lastname">Last Name</label>
-                                        <input type="text" class="form-control" id="lastname">
+                                        <input name = "lastname" type="text" class="form-control" id="lastname">
                                     </div>
 
                                     <div class="form-group">
                                     <label for="email"> E-mail
                                     </label>
-                                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                    <input name = "email" type="email" class="form-control" id="email" placeholder="you@example.com">
                                     </div>
 
                                     <div class="form-group">
                                     <label for="phone"> Phone number
                                     </label>
-                                    <input type="address3" class="form-control" id="address3" placeholder="(+31)1234567890">
+                                    <input name = "nummer" type="address3" class="form-control" id="address3" placeholder="(+31)1234567890">
                                     </div>
                                     
                                 </div>
@@ -56,7 +57,7 @@
                                     <h6 class="card-title">Shipping address:</h6>
                                     <div class="form-group">
                                         <label for="adres" class="col-form-label">Country:</label>
-                                        <select class="form-control" id="country">
+                                        <select name ="land" class="form-control" id="country">
                                             <option>The Netherlands</option>
                                             <option>Germany</option>
                                             <option>Belgium</option>
@@ -69,7 +70,7 @@
                                     
                                     <div class="form-group">
                                         <label for="adres" class="col-form-label">Province/state:</label>
-                                        <select class="form-control" id="provincie">
+                                        <select name ="adres" class="form-control" id="provincie">
                                             <option>...</option>
                                             <option>Overijssel</option>
                                             <option>Friesland</option>
@@ -90,7 +91,7 @@
                                     
                                     <div class="form-group">
                                         <label for="adres" class="col-form-label">Postal code:</label>
-                                        <input type="text" class="form-control" id="tel" placeholder="1234 AA" required>
+                                        <input name = "postcode" type="text" class="form-control" id="tel" placeholder="1234 AA" required>
                                         <div class="postcode-feedback">
 
                                         </div>
@@ -98,7 +99,7 @@
                                     
                                     <div class="form-group">
                                         <label for="adres" class="col-form-label">Streetname and home number:</label>
-                                        <input type="text" class="form-control" id="tel" placeholder="Street name 000" required>
+                                        <input name = "streetname" type="text" class="form-control" id="tel" placeholder="Street name 000" required>
                                         <div class="straat-feedback">
 
                                         </div>
@@ -142,16 +143,6 @@
                                         </script>
                                     
                                     </div>
-                                    <div class="form-group">
-                                        <h6 class="card-title">Shipping method:</h6>
-                                        <select class="form-control" id="methode">
-                                            <option>Slow (€5.00)</option>
-                                            <option>Average (€15.00)</option>
-                                            <option>Fast (€25.00)</option>
-                                        </select>
-                                    </div>    
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="card-body">
                                     <input type="checkbox" name="accept"> Accept the terms of service</input>
@@ -159,6 +150,8 @@
                                     <button onclick="window.location.href='/WWI/confirm'" class="btn btn-default">
                                         Terug
                                     </button>
+                                    <button type="submit" class="btn btn-success">
+                                        Confirm
                                     <button onclick="window.location.href='/WWI/pay'" type="submit" class="btn btn-primary">
                                         Bevestigen
                                     </button>
@@ -171,3 +164,57 @@
         </div>
     </div>
 </html>
+<?php
+//post input in variabelen zetten zodat het makkelijker is ze te filteren en controleren
+$sex = filter_input(INPUT_POST , "sex" , FILTER_SANITIZE_SPECIAL_CHARS);
+$adres = filter_input(INPUT_POST , "adres" , FILTER_SANITIZE_SPECIAL_CHARS);
+$payment = filter_input(INPUT_POST , "paymentoption" , FILTER_SANITIZE_SPECIAL_CHARS);
+$accept = filter_input(INPUT_POST , "accept" , FILTER_SANITIZE_SPECIAL_CHARS);
+$firstname = filter_input(INPUT_POST , "firstname" , FILTER_SANITIZE_SPECIAL_CHARS);
+$lastname = filter_input(INPUT_POST , "lastname" , FILTER_SANITIZE_SPECIAL_CHARS);
+$email = filter_input(INPUT_POST , "email" , FILTER_SANITIZE_EMAIL);
+$land = filter_input(INPUT_POST , "land" , FILTER_SANITIZE_SPECIAL_CHARS);
+$postalcode = filter_input(INPUT_POST , "postcode" , FILTER_SANITIZE_SPECIAL_CHARS);
+$streetname = filter_input(INPUT_POST , "streetname" , FILTER_SANITIZE_SPECIAL_CHARS);
+//controleren of de data is ingevult
+if(empty($sex)) {
+    print("Vul alstufblieft een geslacht in");
+    die;
+}
+if(empty($firstname)) {
+    print("Vul alstufblieft een naam in");
+    die;
+}
+if(empty($lastname)) {
+    print("Vul alstufblieft een achternaam in");
+    die;
+}
+if(empty($email)) {
+    print("Vul alstufblieft een email in");
+    die;
+}
+if(empty($land)) {
+    print("Vul alstufblieft een land in");
+    die;
+}
+if(empty($adres)) {
+    print("Vul alstublieft een adres in");
+    die;
+} 
+if(empty($postalcode)) {
+    print("Vul alstufblieft een postcode in");
+    die;
+}
+if(empty($streetname)) {
+    print("Vul alstufblieft een straatnaam in");
+    die;
+}
+if(empty($payment)) {
+    print("Kies alstublieft een betaal optie");
+    die;
+} 
+if(empty($accept)) {
+    print("U moet onze voorwaarden accepteren voordat u kunt bestellen");
+    die;
+} 
+?>
