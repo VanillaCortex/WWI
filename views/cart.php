@@ -112,9 +112,9 @@
                             <tr id="line-<?=$key?>">
                                 <td><a class="cart-icon hidden save-edit" data-action="save-edit" id="save-edit-<?=$key?>"><i class="fas fa-save"></i></a><a class="cart-icon edit" data-action="edit" id="edit-<?=$key?>" data-id="<?=$key?>"><i class="fas fa-edit"></i></a>  <a class="cart-icon remove" data-action="remove" data-toggle="modal" data-target="#exampleModal" id="remove-<?=$key?>"><i class="fas fa-trash-alt"></i></a>  </td>
                                 <td><a href="/WWI/product?<?=$item['product']?>"><?=$item['product_naam']?></a></td>
-                                <td>€<?= floatval($item['prijs_per']) ?></td>
+                                <td>€<?= number_format($item['prijs_per'], 2, '.', '') ?></td>
                                 <td><a class="cart-icon hidden add-one" data-action="add-one" id="add-one-<?=$key?>"><i class="fas fa-plus-square"></i></a> <input class="cart-amount hidden" type="number" value="<?= $item['aantal'] ?>" id="cart-amount-<?=$key?>" data-action="change-amount"> <p id="amount-<?=$key?>"><?=$item['aantal']?></p> <a class="cart-icon hidden subtract-one" data-action="subtract-one" id="subtract-one-<?=$key?>"><i class="fas fa-minus"></i> </a></td>
-                                <td id="product-price-<?=$key?>">€<?=floatval($item['prijs_per']*$item['aantal'])?></td>
+                                <td id="product-price-<?=$key?>">€<?=  number_format($item['prijs_per'] * $item['aantal'], 2, '.', '')?></td>
                             </tr>
                             <?php
                         }
@@ -124,7 +124,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td id="total-price"><strong>€<?=$total?></strong></td>
+                            <td id="total-price"><strong>€<?=number_format($total, 2, '.', '')?></strong></td>
                         </tr>
                     <?php
                     }

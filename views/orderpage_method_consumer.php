@@ -123,7 +123,7 @@
                                 <button type="button" class="btn btn-default">
                                     Terug
                                 </button>
-                                <button type="submit" value =" bevestig account" class="btn btn-success">
+                                <button type="submit" value =" bevestig account" class="btn btn-primary">
                                     Bevestigen
                                 </button>
                             </div>
