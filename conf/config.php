@@ -1,7 +1,7 @@
 <?php
 $username = "root";
-$password = "root";
-$db = "mysql:host=localhost;dbname=wideworldimporters;port=8888";
+$password = "";
+$db = "mysql:host=localhost;dbname=wideworldimporters;port=3306";
 try {
     $pdo = new PDO($db, $username, $password);
 } catch (PDOException $p) {
