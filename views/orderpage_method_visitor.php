@@ -216,5 +216,15 @@ if(empty($payment)) {
 if(empty($accept)) {
     print("U moet onze voorwaarden accepteren voordat u kunt bestellen");
     die;
-} 
+}
+
+if(isset($_POST) && !empty($_POST)) {
+
+    $supreme_order = new Order();
+    $order = $supreme_order->create();
+    print_r($order);
+    die;
+
+}
+
 ?>
