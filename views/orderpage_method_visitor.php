@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
     <div class="col-md-10 offset-md-1">
-        <div class="row custom-container">
             <div class="col-sm-12">
-            Winkelmand > Gegevens nakijken
             <h2>Gegevens nakijken</h2>
-                <div class="nice-box">
                     <form method = "post" action="">
                         <div class="row">
                             <div class="col-md-6">
