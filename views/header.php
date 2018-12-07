@@ -17,8 +17,6 @@
                     <button type="submit" class="btn btn-primary">Log uit</button>
                 </form>
 
-                <a class="nav" href="orders"><i class="fas fa-box fa-2x my-icon-color"></i></a>
-
                 <?php
                     if(isset($_POST) && !empty($_POST) && isset($_POST['logout']) && $_POST['logout'] == 1) {
                         $user = new User();

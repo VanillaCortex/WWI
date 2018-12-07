@@ -1,6 +1,6 @@
 <?php
     // Als iemand al is ingelogd heeft hij/zij geen toegang tot deze pagina
-    if($_SESSION['logged_in'] && $_SESSION['logged_in'] == 1) {
+    if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1) {
         echo '<script>window.location.replace("/WWI/");</script>';
     }
 ?>
@@ -53,8 +53,8 @@
                 }
 
                 //wachtwoord hashen, de data filteren en het in de datbase invoeren
-                $hashedpw = password_hash(INPUT_POST["password"] , PASSWORD_DEFAULT);
-                $name = filter_input(INPUT_POST, 'name', FILTER_DEFAULT);
+                $hashedpw = password_hash($_POST["password"] , PASSWORD_DEFAULT);
+                $name = filter_var($_POST['name'],  FILTER_DEFAULT);
                 $emailadres = filter_var($_POST["emailadress"], FILTER_SANITIZE_EMAIL);
 
                 $query = "INSERT INTO users (naam, email, password)
