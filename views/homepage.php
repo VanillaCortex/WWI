@@ -12,7 +12,7 @@ $categories->execute();
         <h1 class="display-4 head centerText">Welkom op WWI</h1>
 
         <div class="">
-            <img class="centerImg" width="50%" src="media/images/blackFriday.png" alt="">
+            <img class="centerImg" width="50%" src="media/images/christmas.jpg" alt="">
         </div>
 <!--        <button class="centerImg btn btn-primary">Over Ons</button>-->
         <br>
