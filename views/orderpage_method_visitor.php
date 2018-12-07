@@ -147,8 +147,6 @@
                                     <button onclick="window.location.href='/WWI/confirm'" class="btn btn-default">
                                         Terug
                                     </button>
-                                    <button type="submit" class="btn btn-success">
-                                        Confirm
                                     <button onclick="window.location.href='/WWI/pay'" type="submit" class="btn btn-primary">
                                         Bevestigen
                                     </button>
@@ -174,48 +172,49 @@ $land = filter_input(INPUT_POST , "land" , FILTER_SANITIZE_SPECIAL_CHARS);
 $postalcode = filter_input(INPUT_POST , "postcode" , FILTER_SANITIZE_SPECIAL_CHARS);
 $streetname = filter_input(INPUT_POST , "streetname" , FILTER_SANITIZE_SPECIAL_CHARS);
 //controleren of de data is ingevult
-if(empty($sex)) {
-    print("Vul alstufblieft een geslacht in");
-    die;
-}
-if(empty($firstname)) {
-    print("Vul alstufblieft een naam in");
-    die;
-}
-if(empty($lastname)) {
-    print("Vul alstufblieft een achternaam in");
-    die;
-}
-if(empty($email)) {
-    print("Vul alstufblieft een email in");
-    die;
-}
-if(empty($land)) {
-    print("Vul alstufblieft een land in");
-    die;
-}
-if(empty($adres)) {
-    print("Vul alstublieft een adres in");
-    die;
-} 
-if(empty($postalcode)) {
-    print("Vul alstufblieft een postcode in");
-    die;
-}
-if(empty($streetname)) {
-    print("Vul alstufblieft een straatnaam in");
-    die;
-}
-if(empty($payment)) {
-    print("Kies alstublieft een betaal optie");
-    die;
-} 
-if(empty($accept)) {
-    print("U moet onze voorwaarden accepteren voordat u kunt bestellen");
-    die;
-}
 
 if(isset($_POST) && !empty($_POST)) {
+
+    if(empty($sex)) {
+        print("Vul alstufblieft een geslacht in");
+        die;
+    }
+    if(empty($firstname)) {
+        print("Vul alstufblieft een naam in");
+        die;
+    }
+    if(empty($lastname)) {
+        print("Vul alstufblieft een achternaam in");
+        die;
+    }
+    if(empty($email)) {
+        print("Vul alstufblieft een email in");
+        die;
+    }
+    if(empty($land)) {
+        print("Vul alstufblieft een land in");
+        die;
+    }
+    if(empty($adres)) {
+        print("Vul alstublieft een adres in");
+        die;
+    }
+    if(empty($postalcode)) {
+        print("Vul alstufblieft een postcode in");
+        die;
+    }
+    if(empty($streetname)) {
+        print("Vul alstufblieft een straatnaam in");
+        die;
+    }
+    if(empty($payment)) {
+        print("Kies alstublieft een betaal optie");
+        die;
+    }
+    if(empty($accept)) {
+        print("U moet onze voorwaarden accepteren voordat u kunt bestellen");
+        die;
+    }
 
     $supreme_order = new Order();
     $order = $supreme_order->create();
